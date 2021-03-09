@@ -1,4 +1,4 @@
-package com.github.ankur22.kafka.tutorial2;
+package tutorial2;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
@@ -215,6 +215,14 @@ public class TwitterProducer {
         properties.setProperty(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy");
         properties.setProperty(ProducerConfig.LINGER_MS_CONFIG, "20");
         properties.setProperty(ProducerConfig.BATCH_SIZE_CONFIG, Integer.toString(32*1024));
+
+        // Kafka uses the murmur2 hashing algo to ahs the key.
+
+        // Producer buffer is 32MB in mem. If the broker is down or the producer starts
+        // sending more data than the broker can handle, the buffer will fill up and may
+        // eventually start throwing exceptions.
+        // To overcome this we can alter Max.block.ms (defaults to 60000ms) and buffer.memory
+        // (defaults to 32MB).
 
         // Create the Producer
         return new KafkaProducer<>(properties);
