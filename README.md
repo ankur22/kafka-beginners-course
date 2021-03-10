@@ -19,3 +19,13 @@ Create a secret.json file in the root of the project:
   "kafkaHost": "127.0.0.1:9092"
 }
 ```
+
+Create a consumer-config.json file in the root of the project:
+
+```json
+{
+  "bonsaiHostname": "",
+  "bonsaiUsername": "",
+  "bonsaiPassword": ""
+}
+```
