@@ -185,6 +185,15 @@ public class ElasticSearchConsumer {
                 // Kafka Connect:
                 // - Prebuilt connect "libraries" which retrieve data from popular sources (DBs, Salesforce, Twitter,
                 //   etc.) and write data to popular destinations (DBs, Salesforce, twitter etc).
+
+                // Kafka Streams:
+                // - data processing and transformation library within Kafka
+                //   - data transforms; data enrichment; fraud detection; monitoring and alerting
+                // - Std Java app; no new separate cluster; exactly once capabilities; one record at a time (no batching);
+                //   highly scalable.
+                // - source -> connect cluster -> kafka cluster <-> streams app
+                //     sink <- connect cluster <- kafka cluster
+                // - Other contenders are Apache Spark, Flink or NiFi
             }
             if (recordCount > 0) {
                 BulkResponse bulkItemResponse = client.bulk(bulkRequest, RequestOptions.DEFAULT);
@@ -206,6 +215,7 @@ public class ElasticSearchConsumer {
     }
 
     private static String extractIDFromTweet(String tweetJSON) throws Exception {
+        // TODO: Reuse this ObjectMapper
         ObjectNode node = new ObjectMapper().readValue(tweetJSON, ObjectNode.class);
         if (node.has("id_str")) {
             return node.get("id_str").asText();
