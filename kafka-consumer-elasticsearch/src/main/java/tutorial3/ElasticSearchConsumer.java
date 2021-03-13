@@ -194,6 +194,17 @@ public class ElasticSearchConsumer {
                 // - source -> connect cluster -> kafka cluster <-> streams app
                 //     sink <- connect cluster <- kafka cluster
                 // - Other contenders are Apache Spark, Flink or NiFi
+
+                // Schema Registry in Kafka
+                // Apache Avro as the chosen schema format
+                //          |-> Schema Registry ->|
+                // Producer ->      Kafka         -> Consumer
+                //       Avro content          Avro content
+                //
+                // - Needs to be setup well
+                // - Highly available
+                // - Partially change the producer and consumer
+                // - Can we use a different schema format e.g. json, protobuf, etc?
             }
             if (recordCount > 0) {
                 BulkResponse bulkItemResponse = client.bulk(bulkRequest, RequestOptions.DEFAULT);
