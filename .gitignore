@@ -1,3 +1,5 @@
 target/
 secrets.json
 consumer-config.json
+twitter.properties
+

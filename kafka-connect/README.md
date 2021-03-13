@@ -1,0 +1,15 @@
+Create a `twitter.properties` with the following:
+
+name=connector1
+tasks.max=1
+connector.class=com.github.jcustenborder.kafka.connect.twitter.TwitterSourceConnector
+
+# Set these required values
+process.deletes=false
+filter.keywords=bitcoin
+kafka.status.topic=twitter_status_connect
+kafka.delete.topic=twitter_deletes_connect
+twitter.oauth.consumerSecret=
+twitter.oauth.accessToken=
+twitter.oauth.consumerKey=
+twitter.oauth.accessTokenSecret=
